@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trần Việt Toàn - K244161814</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <a href="#" class="logo" data-page="home">Trần Việt Toàn - K244161814</a>
+        <div class="header-right">
+            <span id="userBox"></span>
+            <div class="cart-wrap">
+                <button id="cartButton" class="cart-button">Giỏ hàng <span id="cartCount" class="cart-count">0</span></button>
+                <div id="miniCart" class="mini-cart hidden"></div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="site-nav">
+        <ul id="menu">
+            <li><a href="#" data-page="home" class="active">Trang chủ</a></li>
+            <li><a href="#" data-page="shop">Cửa hàng</a></li>
+            <li><a href="#" data-page="checkout">Thanh toán</a></li>
+            <li id="menuLogin"><a href="#" data-page="login">Đăng nhập</a></li>
+            <li><a href="#" data-page="admin">Quản trị</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="home" class="page show">
+            <div class="welcome">
+                <p>Sinh viên</p>
+                <h1>Trần Việt Toàn</h1>
+                <p class="mssv">Mã sinh viên: K244161814</p>
+                <button class="go-shop" data-page="shop">Vào cửa hàng</button>
+            </div>
+        </section>
+
+        <section id="shop" class="page">
+            <div class="shop-layout">
+                <aside class="sidebar">
+                    <h3>Tìm kiếm nâng cao</h3>
+                    <form id="searchForm">
+                        <label for="keyword">Tên sản phẩm</label>
+                        <input type="search" id="keyword" name="keyword" maxlength="50" pattern="[^<>]*" placeholder="Nhập tên sản phẩm" title="Không nhập ký tự < hoặc >">
+
+                        <label for="category">Danh mục</label>
+                        <select id="category" name="category" required>
+                            <option value="all">Tất cả danh mục</option>
+                            <option value="men's clothing">Thời trang nam</option>
+                            <option value="women's clothing">Thời trang nữ</option>
+                            <option value="jewelery">Trang sức</option>
+                            <option value="electronics">Điện tử</option>
+                        </select>
+
+                        <label>Khoảng giá ($)</label>
+                        <div class="price-range">
+                            <input type="number" id="priceMin" name="priceMin" min="0" max="1000" step="0.01" value="0" required title="Giá từ 0 đến 1000">
+                            <span>đến</span>
+                            <input type="number" id="priceMax" name="priceMax" min="0" max="1000" step="0.01" value="1000" required title="Giá từ 0 đến 1000">
+                        </div>
+
+                        <label>Màu sắc</label>
+                        <div id="colorFilter" class="color-filter"></div>
+
+                        <label for="ratingMin">Đánh giá từ <b id="ratingValue">0</b> sao</label>
+                        <input type="range" id="ratingMin" name="ratingMin" min="0" max="5" step="0.5" value="0">
+
+                        <div class="form-buttons">
+                            <button type="submit">Tìm kiếm</button>
+                            <button type="reset" class="gray">Xóa lọc</button>
+                        </div>
+                    </form>
+                </aside>
+
+                <section class="product-area">
+                    <h2>Sản phẩm</h2>
+                    <p id="resultInfo" class="result-info"></p>
+                    <div id="productList" class="product-grid"></div>
+                </section>
+            </div>
+        </section>
+
+        <section id="checkout" class="page">
+            <h2>Thanh toán</h2>
+            <div id="checkoutSuccess" class="success-box hidden"></div>
+            <div id="checkoutLayout" class="checkout-layout">
+                <form id="checkoutForm" class="box" novalidate>
+                    <h3>Thông tin giao hàng</h3>
+                    <label for="shipName">Họ và tên</label>
+                    <input type="text" id="shipName" placeholder="Nguyễn Văn A">
+                    <small id="errName" class="error"></small>
+
+                    <label for="shipPhone">Số điện thoại</label>
+                    <input type="tel" id="shipPhone" placeholder="0912345678">
+                    <small id="errPhone" class="error"></small>
+
+                    <label for="shipEmail">Email</label>
+                    <input type="email" id="shipEmail" placeholder="ten@gmail.com">
+                    <small id="errEmail" class="error"></small>
+
+                    <label for="shipAddress">Địa chỉ giao hàng</label>
+                    <input type="text" id="shipAddress" placeholder="Số nhà, đường, quận, thành phố">
+                    <small id="errAddress" class="error"></small>
+
+                    <label for="shipPayment">Phương thức thanh toán</label>
+                    <select id="shipPayment">
+                        <option>Tiền mặt</option>
+                        <option>Chuyển khoản</option>
+                        <option>Thẻ tín dụng</option>
+                    </select>
+
+                    <label for="shipNote">Ghi chú</label>
+                    <textarea id="shipNote" rows="3" maxlength="200"></textarea>
+
+                    <p id="checkoutMsg" class="msg"></p>
+                    <button type="submit" class="big">Xác nhận thanh toán</button>
+                </form>
+                <div class="box">
+                    <h3>Đơn hàng của bạn</h3>
+                    <div id="checkoutSummary"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="login" class="page">
+            <h2>Đăng nhập khách hàng</h2>
+            <form id="loginForm" class="box login-box">
+                <label for="username">Tên đăng nhập</label>
+                <input type="text" id="username" required>
+                <label for="password">Mật khẩu</label>
+                <input type="password" id="password" required>
+                <button type="submit">Đăng nhập</button>
+                <p id="loginMsg" class="msg"></p>
+            </form>
+        </section>
+
+        <section id="admin" class="page">
+            <div id="adminLogin">
+                <h2>Đăng nhập quản trị</h2>
+                <form id="adminLoginForm" class="box login-box">
+                    <label for="adminUser">Tên đăng nhập</label>
+                    <input type="text" id="adminUser" required>
+                    <label for="adminPass">Mật khẩu</label>
+                    <input type="password" id="adminPass" required>
+                    <button type="submit">Đăng nhập</button>
+                    <p id="adminLoginMsg" class="msg"></p>
+                </form>
+            </div>
+
+            <div id="adminPanel" class="hidden">
+                <h2>Quản trị</h2>
+                <div id="adminTabs" class="admin-tabs">
+                    <button data-tab="tabStats" class="active">Thống kê</button>
+                    <button data-tab="tabOrders">Đơn hàng</button>
+                    <button data-tab="tabSold">Sản phẩm đã bán</button>
+                    <button data-tab="tabEmployees">Nhân viên</button>
+                    <button data-tab="tabCustomers">Khách hàng</button>
+                </div>
+
+                <div id="tabStats" class="tab show"></div>
+
+                <div id="tabOrders" class="tab">
+                    <div class="toolbar">
+                        <input type="search" id="orderSearch" placeholder="Tìm mã đơn hoặc tên khách">
+                        <select id="orderFilter">
+                            <option value="all">Tất cả trạng thái</option>
+                            <option>Chờ xác nhận</option>
+                            <option>Đang giao</option>
+                            <option>Đã thanh toán</option>
+                            <option>Đã hủy</option>
+                        </select>
+                    </div>
+                    <div id="orderTable"></div>
+                </div>
+
+                <div id="tabSold" class="tab"></div>
+                <div id="tabEmployees" class="tab"></div>
+                <div id="tabCustomers" class="tab"></div>
+            </div>
+        </section>
+    </main>
+
+    <div id="modal" class="modal hidden">
+        <div class="modal-box">
+            <button class="modal-close">×</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <footer>
+        <p>Sinh viên: <b>Trần Việt Toàn</b> - Mã sinh viên: <b>K244161814</b></p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

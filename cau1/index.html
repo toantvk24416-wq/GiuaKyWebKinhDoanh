@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Câu 1 - Thiết kế dữ liệu JSON/XML</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Trần Việt Toàn - K244161814</div>
+        <div id="userBox"></div>
+    </header>
+
+    <nav>
+        <ul id="menu">
+            <li><a href="#" data-page="home" class="active">Trang chủ</a></li>
+            <li><a href="#" data-page="products">Sản phẩm</a></li>
+            <li><a href="#" data-page="employees">Nhân viên</a></li>
+            <li><a href="#" data-page="customers">Khách hàng</a></li>
+            <li><a href="#" data-page="carts">Hóa đơn</a></li>
+            <li id="menuDashboard" class="hidden"><a href="#" data-page="dashboard">Dashboard Admin</a></li>
+            <li id="menuLogin"><a href="#" data-page="login">Đăng nhập</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="home" class="page show">
+            <div class="welcome">
+                <p>Sinh viên</p>
+                <h1>Trần Việt Toàn</h1>
+                <p class="mssv">Mã sinh viên: K244161814</p>
+            </div>
+        </section>
+
+        <section id="products" class="page">
+            <h2>Sản phẩm</h2>
+            <p id="productMsg" class="msg"></p>
+            <div id="productList" class="grid"></div>
+        </section>
+
+        <section id="employees" class="page">
+            <h2>Nhân viên</h2>
+            <div id="employeeTable"></div>
+        </section>
+
+        <section id="customers" class="page">
+            <h2>Khách hàng</h2>
+            <div id="customerTable"></div>
+        </section>
+
+        <section id="carts" class="page">
+            <h2>Hóa đơn</h2>
+            <div id="cartList"></div>
+        </section>
+
+
+        <section id="login" class="page">
+            <h2>Đăng nhập</h2>
+            <form id="loginForm" class="form">
+                <label>Tên đăng nhập</label>
+                <input type="text" id="username" placeholder="Ví dụ: admin hoặc an.tran">
+                <label>Mật khẩu</label>
+                <input type="password" id="password">
+                <button type="submit">Đăng nhập</button>
+                <p id="loginMsg" class="msg"></p>
+            </form>
+        </section>
+
+        <section id="dashboard" class="page">
+            <h2>Dashboard Admin</h2>
+            <div id="dashboardBox" class="cards"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Sinh viên: <b>Trần Việt Toàn</b> - Mã sinh viên: <b>K244161814</b></p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
